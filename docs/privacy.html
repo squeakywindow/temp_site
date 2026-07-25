@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — ShelfBee</title>
+  <meta name="description" content="ShelfBee's privacy policy. We don't collect personal data. Library lookups happen entirely on your device.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FAF7F2;
+      --brown-dark: #1C110A;
+      --brown-mid: #5C3317;
+      --amber: #C8860A;
+      --amber-light: #FDF3DC;
+      --amber-border: #E8C97A;
+      --gray-text: #6B5B4E;
+      --border: #E8DDD4;
+      --radius: 10px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--brown-dark);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--brown-dark);
+    }
+    .nav-bee { width: 28px; height: 28px; }
+    .nav-wordmark {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--brown-dark);
+    }
+    .nav-back {
+      font-size: 0.875rem;
+      color: var(--gray-text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-back:hover { color: var(--brown-dark); }
+
+    .prose {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+    }
+    .prose-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .prose-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.75rem;
+    }
+    .prose h1 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--brown-dark);
+      margin-bottom: 0.75rem;
+    }
+    .prose-meta {
+      font-size: 0.875rem;
+      color: var(--gray-text);
+    }
+    .summary-box {
+      background: var(--amber-light);
+      border: 1px solid var(--amber-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0 2.5rem;
+    }
+    .summary-box p {
+      font-size: 0.9375rem;
+      color: var(--brown-mid);
+      line-height: 1.65;
+    }
+    .summary-box strong { color: var(--brown-dark); font-weight: 600; }
+
+    .prose h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--brown-dark);
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .prose p {
+      color: var(--gray-text);
+      margin-bottom: 1rem;
+      font-size: 0.9375rem;
+    }
+    .prose ul {
+      padding-left: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .prose ul li {
+      color: var(--gray-text);
+      font-size: 0.9375rem;
+      margin-bottom: 0.4rem;
+    }
+    .prose a {
+      color: var(--amber);
+      text-decoration: none;
+    }
+    .prose a:hover { text-decoration: underline; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 2rem;
+      max-width: 660px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy { font-size: 0.8125rem; color: var(--gray-text); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 0.8125rem; color: var(--gray-text); text-decoration: none; }
+    .footer-links a:hover { color: var(--brown-dark); }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .prose { padding: 2.5rem 1.25rem 4rem; }
+      footer { flex-direction: column; align-items: flex-start; padding: 1.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo" aria-label="ShelfBee home">
+      <svg class="nav-bee" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="16" cy="18" rx="9" ry="10" fill="#F5C842"/>
+        <rect x="10" y="12" width="12" height="3" rx="1.5" fill="#2C1810"/>
+        <rect x="10" y="17" width="12" height="3" rx="1.5" fill="#2C1810"/>
+        <rect x="10" y="22" width="12" height="3" rx="1.5" fill="#2C1810"/>
+        <ellipse cx="11.5" cy="10" rx="5" ry="3.5" fill="#E8F4FF" opacity="0.85" transform="rotate(-20 11.5 10)"/>
+        <ellipse cx="20.5" cy="10" rx="5" ry="3.5" fill="#E8F4FF" opacity="0.85" transform="rotate(20 20.5 10)"/>
+      </svg>
+      <span class="nav-wordmark">ShelfBee</span>
+    </a>
+    <a href="/" class="nav-back">
+      ← Back to home
+    </a>
+  </nav>
+
+  <main>
+    <div class="prose">
+      <div class="prose-header">
+        <p class="prose-eyebrow">Legal</p>
+        <h1>Privacy policy</h1>
+        <p class="prose-meta">Effective date: July 1, 2025 &nbsp;·&nbsp; Last updated: July 2025</p>
+      </div>
+
+      <div class="summary-box">
+        <p><strong>The short version:</strong> ShelfBee does not collect, store, or transmit any personal data. Library availability lookups happen directly between your device and your library's servers. We have no backend, no analytics, and no accounts. Your reading habits stay yours.</p>
+      </div>
+
+      <h2>Who we are</h2>
+      <p>ShelfBee ("we," "us," or "our") is a Safari Web Extension for iOS, iPadOS, and macOS, distributed through the Apple App Store. Questions can be sent to <a href="mailto:support@shelfbee.app">support@shelfbee.app</a>.</p>
+
+      <h2>Information we do not collect</h2>
+      <p>We do not collect, store, or process:</p>
+      <ul>
+        <li>Your name, email address, or any account information</li>
+        <li>The books you browse or search</li>
+        <li>Your library card number or library account credentials</li>
+        <li>Your device identifiers or IP address</li>
+        <li>Location data</li>
+        <li>Browsing history</li>
+        <li>Usage analytics or crash reports sent to us</li>
+      </ul>
+
+      <h2>How library lookups work</h2>
+      <p>When you visit a supported book page, ShelfBee reads the page's book metadata (such as title and ISBN) and uses it to query your library's availability data via OverDrive/Libby's public endpoints. This request goes from your device directly to those services — it does not pass through any ShelfBee server, because we don't operate one.</p>
+      <p>Your chosen library is saved locally on your device using standard iOS/macOS system storage (UserDefaults and App Groups). This data never leaves your device.</p>
+
+      <h2>Pages we can read</h2>
+      <p>ShelfBee requests permission to read page content only on the specific websites it supports (such as Amazon and Goodreads). It reads book metadata only — not your account information, purchase history, or any other page content.</p>
+
+      <h2>Third-party services</h2>
+      <p>When ShelfBee performs a library availability check, your device communicates directly with OverDrive/Libby servers. That communication is governed by <a href="https://company.overdrive.com/company/privacy/" target="_blank" rel="noopener">OverDrive's privacy policy</a>, not ours.</p>
+      <p>We do not use any third-party analytics SDKs, advertising networks, or tracking services in the app.</p>
+
+      <h2>Support correspondence</h2>
+      <p>If you contact us at <a href="mailto:support@shelfbee.app">support@shelfbee.app</a>, we receive and read your email. We use this only to respond to your inquiry and do not store it in any external system beyond our email inbox. We do not share support correspondence with third parties.</p>
+
+      <h2>Children's privacy</h2>
+      <p>ShelfBee does not knowingly collect any information from children under 13. The app contains no features that require personal data from any user.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>If we ever change how the app handles data in a meaningful way, we will update this page and revise the effective date above. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+
+      <h2>Contact</h2>
+      <p>Questions or concerns about privacy? Email us at <a href="mailto:support@shelfbee.app">support@shelfbee.app</a>. We'll respond within 48 hours on business days.</p>
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-copy">© 2025 ShelfBee. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="/privacy.html">Privacy policy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+      <li><a href="/support.html">Support</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>

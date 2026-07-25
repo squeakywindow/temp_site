@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShelfBee — Find it at your library</title>
+  <meta name="description" content="ShelfBee is a Safari extension that checks your local library's availability while you browse Amazon and Goodreads. Save money, read more.">
+  <meta property="og:title" content="ShelfBee — Find it at your library">
+  <meta property="og:description" content="Browse books on Amazon or Goodreads and instantly see if your library has them on Libby.">
+  <meta property="og:image" content="https://shelfbee.app/og.png">
+  <meta property="og:url" content="https://shelfbee.app">
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FAF7F2;
+      --brown-dark: #1C110A;
+      --brown-mid: #5C3317;
+      --amber: #C8860A;
+      --amber-light: #FDF3DC;
+      --amber-border: #E8C97A;
+      --gray-text: #6B5B4E;
+      --border: #E8DDD4;
+      --radius: 10px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--brown-dark);
+      line-height: 1.65;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--brown-dark);
+    }
+    .nav-bee {
+      width: 32px;
+      height: 32px;
+    }
+    .nav-wordmark {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--brown-dark);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray-text);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--brown-dark); }
+
+    /* Hero */
+    .hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--amber-light);
+      border: 1px solid var(--amber-border);
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--amber);
+      letter-spacing: 0.02em;
+      margin-bottom: 1.75rem;
+    }
+    .hero h1 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(2.25rem, 5vw, 3.25rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--brown-dark);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber);
+    }
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--gray-text);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .btn-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brown-dark);
+      color: var(--cream);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--gray-text);
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--brown-dark); color: var(--brown-dark); }
+
+    /* Screenshot placeholder */
+    .hero-screen {
+      margin: 3.5rem auto 0;
+      max-width: 680px;
+      background: var(--amber-light);
+      border: 1px solid var(--amber-border);
+      border-radius: 16px;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber);
+      font-size: 0.875rem;
+      font-weight: 500;
+      gap: 8px;
+    }
+
+    /* How it works */
+    .section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+    .section h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--brown-dark);
+      margin-bottom: 3rem;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .step-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      background: var(--amber-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+    .step-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--brown-dark);
+      margin-bottom: 0.5rem;
+    }
+    .step-card p {
+      font-size: 0.875rem;
+      color: var(--gray-text);
+      line-height: 1.6;
+    }
+
+    /* Divider */
+    .rule { border: none; border-top: 1px solid var(--border); }
+
+    /* Sites supported */
+    .sites {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .site-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .chip {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--brown-dark);
+    }
+    .chip.coming {
+      color: var(--gray-text);
+      border-style: dashed;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-size: 0.8125rem;
+      color: var(--gray-text);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--gray-text);
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--brown-dark); }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem; }
+      .nav-links { gap: 1.25rem; }
+      .hero { padding: 3rem 1.25rem 3rem; }
+      .section, .sites { padding: 3rem 1.25rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo" aria-label="ShelfBee home">
+      <svg class="nav-bee" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="16" cy="18" rx="9" ry="10" fill="#F5C842"/>
+        <rect x="10" y="12" width="12" height="3" rx="1.5" fill="#2C1810"/>
+        <rect x="10" y="17" width="12" height="3" rx="1.5" fill="#2C1810"/>
+        <rect x="10" y="22" width="12" height="3" rx="1.5" fill="#2C1810"/>
+        <ellipse cx="11.5" cy="10" rx="5" ry="3.5" fill="#E8F4FF" opacity="0.85" transform="rotate(-20 11.5 10)"/>
+        <ellipse cx="20.5" cy="10" rx="5" ry="3.5" fill="#E8F4FF" opacity="0.85" transform="rotate(20 20.5 10)"/>
+        <circle cx="13" cy="16" r="1.5" fill="#2C1810"/>
+        <circle cx="19" cy="16" r="1.5" fill="#2C1810"/>
+      </svg>
+      <span class="nav-wordmark">ShelfBee</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="/support.html">Support</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="6.5" fill="#C8860A" opacity="0.25"/><circle cx="6.5" cy="6.5" r="3.5" fill="#C8860A"/></svg>
+        Safari Extension for iOS &amp; Mac
+      </div>
+      <h1>Browse books.<br><em>Borrow them</em> for free.</h1>
+      <p class="hero-sub">ShelfBee sits in your Safari toolbar and quietly checks your library's Libby availability while you browse Amazon and Goodreads. Before you buy, know if it's free.</p>
+      <div class="btn-group">
+        <a href="#" class="btn-primary" aria-label="Download on the App Store (coming soon)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M11 1.5C11 3.43 9.43 5 7.5 5S4 3.43 4 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 5v9M5 11l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download on the App Store
+        </a>
+        <a href="#how-it-works" class="btn-secondary">See how it works</a>
+      </div>
+      <div class="hero-screen" role="img" aria-label="Screenshot coming soon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="2" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+        App screenshot coming soon
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="section" id="how-it-works">
+      <div class="section-label">How it works</div>
+      <h2>Three steps to never buying a book you could borrow</h2>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Install the extension</h3>
+          <p>Download ShelfBee from the App Store and enable it in Safari's extension settings on your iPhone, iPad, or Mac.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Browse like normal</h3>
+          <p>Visit any book page on Amazon or Goodreads. ShelfBee automatically detects the book and checks your library.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Borrow or buy</h3>
+          <p>A small banner shows availability status. One tap opens Libby directly so you can borrow — or you know to go ahead and buy.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="sites">
+      <div class="section-label">Supported sites</div>
+      <h2 style="font-family: 'Lora', Georgia, serif; font-size: 1.35rem; font-weight: 600; color: var(--brown-dark); margin-bottom: 0.5rem;">Works where you discover books</h2>
+      <p style="color: var(--gray-text); font-size: 0.9375rem; margin-bottom: 0;">More sites being added regularly.</p>
+      <div class="site-chips">
+        <span class="chip">Amazon</span>
+        <span class="chip">Goodreads</span>
+        <span class="chip coming">Barnes &amp; Noble — coming soon</span>
+        <span class="chip coming">Google Books — coming soon</span>
+        <span class="chip coming">Book of the Month — coming soon</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="footer-copy">© 2025 ShelfBee. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="/privacy.html">Privacy policy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+      <li><a href="/support.html">Support</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
